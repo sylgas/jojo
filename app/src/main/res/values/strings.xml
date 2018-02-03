@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Journey Journal</string>
+
+    <!--Action menu-->
+    <string name="action_default_title">@string/app_name</string>
+    <string name="action_search">Search</string>
+
+    <!--Navigation drawer-->
+    <string name="nav_drawer_title">Let\'s start!</string>
+    <string name="nav_drawer_open">Open navigation drawer</string>
+    <string name="nav_drawer_close">Close navigation drawer</string>
+
+    <string name="nav_drawer_gallery">Gallery</string>
+    <string name="nav_drawer_category_other">Settings</string>
+    <string name="nav_drawer_settings">Settings</string>
+
+    <!--About-->
+    <string name="about_activity_label">About</string>
+
+    <!--Image description-->
+    <string name="app_icon_description">Journey Journal</string>
+
+    <!--Other-->
+    <string name="not_yet_implemented">Not yet implemented</string>
+</resources>

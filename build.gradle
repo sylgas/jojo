@@ -1,0 +1,37 @@
+buildscript {
+    // build tools versions
+    ext.gradle_build_version = '3.0.1'
+
+    // libs versions
+    ext.kotlin_version = '1.2.21'
+    ext.app_compat_version = '26.1.0'
+    ext.constrait_layout_version = '1.0.2'
+
+    // test libs versions
+    ext.junit_version = '4.12'
+    ext.robolectric_version = '3.6.1'
+
+    // instrumental libs versions
+    ext.test_runner_version = '1.0.1'
+    ext.espresso_core_version = '3.0.1'
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradle_build_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
