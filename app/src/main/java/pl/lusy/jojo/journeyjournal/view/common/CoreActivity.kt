@@ -6,12 +6,11 @@ import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
-
+import dagger.android.support.DaggerAppCompatActivity
 import pl.lusy.jojo.journeyjournal.R
 
 @SuppressLint("Registered")
-open class CoreActivity : AppCompatActivity() {
+open class CoreActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initTaskDescriptionIfSupported()
