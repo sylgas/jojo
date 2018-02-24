@@ -49,6 +49,9 @@ dependencies {
 
     compile "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
 
+    compile "com.chibatching.kotpref:kotpref:$kotpref_version"
+    compile "com.chibatching.kotpref:initializer:$kotpref_version"
+
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.robolectric:robolectric:$robolectric_version"
 

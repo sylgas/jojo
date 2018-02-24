@@ -8,6 +8,7 @@ buildscript {
     ext.constrait_layout_version = '1.0.2'
     ext.dagger_version = '2.14.1'
     ext.rxkotlin_version = '2.2.0'
+    ext.kotpref_version = '2.4.0'
 
     // test libs versions
     ext.junit_version = '4.12'
