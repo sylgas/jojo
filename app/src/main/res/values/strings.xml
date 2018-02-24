@@ -17,8 +17,21 @@
     <!--About-->
     <string name="about_activity_label">About</string>
 
+    <!--Welcome-->
+    <string name="welcome_activity_label">Welcome</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="plan_trip_title">Plan trip</string>
+    <string name="plan_trip_description">Plan trip and times and places</string>
+    <string name="take_photos_title">Take photos</string>
+    <string name="take_photos_description">Take photos, record your trip</string>
+    <string name="enjoy_title">Enjoy</string>
+    <string name="enjoy_description">Start your trip</string>
+
     <!--Image description-->
     <string name="app_icon_description">Journey Journal</string>
+    <string name="welcome_step_description">Quick tutorial progress</string>
+    <string name="welcome_icon_description">Quick tutorial image</string>
 
     <!--Other-->
     <string name="not_yet_implemented">Not yet implemented</string>

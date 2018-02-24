@@ -10,10 +10,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_frame.*
 
 import pl.lusy.jojo.journeyjournal.R
-import pl.lusy.jojo.journeyjournal.extension.setupActionDrawer
 import pl.lusy.jojo.journeyjournal.extension.snackbar
 import pl.lusy.jojo.journeyjournal.extension.toast
 import pl.lusy.jojo.journeyjournal.view.common.CoreActivity
+import pl.lusy.jojo.journeyjournal.view.common.replaceContentWithFragment
+import pl.lusy.jojo.journeyjournal.view.common.setupActionDrawer
+import pl.lusy.jojo.journeyjournal.view.main.fragment.MainFragment
+import pl.lusy.jojo.journeyjournal.view.welcome.WelcomeActivity
 
 class MainActivity : CoreActivity() {
     private val navDrawerListener = NavDrawerListener()
@@ -22,6 +25,8 @@ class MainActivity : CoreActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupActivityFrame()
+        setupFragment()
+        WelcomeActivity.start(this)
     }
 
     private fun setupActivityFrame() {
@@ -31,6 +36,10 @@ class MainActivity : CoreActivity() {
         setupNavDrawer()
     }
 
+    private fun setupFragment() {
+        replaceContentWithFragment(MainFragment.newInstance())
+    }
+
     private fun setupFabButton() {
         fab.setOnClickListener { it.snackbar(R.string.not_yet_implemented) }
     }
@@ -38,14 +47,6 @@ class MainActivity : CoreActivity() {
     private fun setupNavDrawer() {
         setupActionDrawer(drawerLayout, toolbar)
         navView.setNavigationItemSelectedListener(navDrawerListener)
-    }
-
-    override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -63,6 +64,14 @@ class MainActivity : CoreActivity() {
     private fun handleActionSettings(): Boolean {
         toast(R.string.not_yet_implemented)
         return true
+    }
+
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
     }
 
     private inner class NavDrawerListener : NavigationView.OnNavigationItemSelectedListener {

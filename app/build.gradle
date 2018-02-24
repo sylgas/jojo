@@ -5,14 +5,17 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "pl.lusy.jojo.journeyjournal"
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    dataBinding {
+        enabled = true
     }
     buildTypes {
         release {
@@ -33,6 +36,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    kapt "com.android.databinding:compiler:$gradle_build_version"
 
     implementation "com.android.support:appcompat-v7:$app_compat_version"
     implementation "com.android.support:design:$app_compat_version"
@@ -45,12 +49,13 @@ dependencies {
 
     compile "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
 
-    compile "com.jakewharton:butterknife:$butterknife_version"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
-
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.robolectric:robolectric:$robolectric_version"
 
     androidTestImplementation "com.android.support.test:runner:$test_runner_version"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_core_version"
+}
+
+kapt {
+    generateStubs = true
 }

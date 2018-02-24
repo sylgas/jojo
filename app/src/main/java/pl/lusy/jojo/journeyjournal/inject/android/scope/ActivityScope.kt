@@ -1,4 +1,4 @@
-package pl.lusy.jojo.journeyjournal.inject.android.activity
+package pl.lusy.jojo.journeyjournal.inject.android.scope
 
 import javax.inject.Scope
 

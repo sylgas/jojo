@@ -4,4 +4,8 @@
     <color name="colorPrimary">#4CAF50</color>
     <color name="colorPrimaryDark">#2E7D32</color>
     <color name="colorAccent">#FFAB00</color>
+
+    <!--Welcome-->
+    <color name="progress_dots_selected">@android:color/white</color>
+    <color name="progress_dots">#54000000</color>
 </resources>

@@ -24,6 +24,10 @@
             android:name=".view.about.AboutActivity"
             android:label="@string/about_activity_label"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.welcome.WelcomeActivity"
+            android:label="@string/welcome_activity_label"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
