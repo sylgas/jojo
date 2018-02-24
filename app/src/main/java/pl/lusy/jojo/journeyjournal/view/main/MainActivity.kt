@@ -1,5 +1,6 @@
 package pl.lusy.jojo.journeyjournal.view.main
 
+import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -15,10 +16,15 @@ import pl.lusy.jojo.journeyjournal.extension.toast
 import pl.lusy.jojo.journeyjournal.view.common.CoreActivity
 import pl.lusy.jojo.journeyjournal.view.common.replaceContentWithFragment
 import pl.lusy.jojo.journeyjournal.view.common.setupActionDrawer
+import pl.lusy.jojo.journeyjournal.view.common.startCustomActivity
 import pl.lusy.jojo.journeyjournal.view.main.fragment.MainFragment
 import pl.lusy.jojo.journeyjournal.view.welcome.WelcomeActivity
 
 class MainActivity : CoreActivity() {
+    companion object {
+        fun start(context: Context) = context.startCustomActivity<MainActivity>()
+    }
+
     private val navDrawerListener = NavDrawerListener()
 
     override fun onCreate(savedInstanceState: Bundle?) {

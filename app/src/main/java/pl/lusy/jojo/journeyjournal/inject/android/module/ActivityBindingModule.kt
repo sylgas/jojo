@@ -7,6 +7,7 @@ import pl.lusy.jojo.journeyjournal.inject.android.module.activity.WelcomeActivit
 import pl.lusy.jojo.journeyjournal.inject.android.module.activity.WelcomeActivityProviderModule
 import pl.lusy.jojo.journeyjournal.inject.android.scope.ActivityScope
 import pl.lusy.jojo.journeyjournal.view.main.MainActivity
+import pl.lusy.jojo.journeyjournal.view.splash.SplashActivity
 import pl.lusy.jojo.journeyjournal.view.welcome.WelcomeActivity
 
 @Module
@@ -21,4 +22,8 @@ interface ActivityBindingModule {
     ])
     @ActivityScope
     fun contributeWelcomeActivity(): WelcomeActivity
+
+    @ContributesAndroidInjector
+    @ActivityScope
+    fun contributeSplashActivity(): SplashActivity
 }

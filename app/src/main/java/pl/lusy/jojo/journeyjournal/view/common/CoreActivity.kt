@@ -31,7 +31,7 @@ open class CoreActivity : DaggerAppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun initTaskDescription() {
-        val taskColor = ContextCompat.getColor(this, R.color.colorPrimary)
+        val taskColor = ContextCompat.getColor(this, R.color.white)
         val taskDescription = ActivityManager.TaskDescription(null, null, taskColor)
         setTaskDescription(taskDescription)
     }
