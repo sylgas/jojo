@@ -35,4 +35,7 @@
 
     <!--Other-->
     <string name="not_yet_implemented">Not yet implemented</string>
+
+    <!--Trip details-->
+    <string name="trip_details_activity_label">Trip Details</string>
 </resources>

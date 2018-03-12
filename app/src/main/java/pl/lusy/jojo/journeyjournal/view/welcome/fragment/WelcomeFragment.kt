@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dagger.android.DaggerFragment
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_welcome.*
 import kotlinx.android.synthetic.main.view_pagination.*
 import pl.lusy.jojo.journeyjournal.databinding.FragmentWelcomeBinding

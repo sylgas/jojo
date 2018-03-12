@@ -3,12 +3,12 @@ package pl.lusy.jojo.journeyjournal.view.common
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ActivityManager
-import android.app.Fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
+import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -45,7 +45,7 @@ fun CoreActivity.setupActionDrawer(drawerLayout: DrawerLayout, toolbar: Toolbar)
 }
 
 fun CoreActivity.replaceContentWithFragment(fragment: Fragment) {
-    fragmentManager
+    supportFragmentManager
         .beginTransaction()
         .replace(R.id.content, fragment)
         .commit()

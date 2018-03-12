@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dagger.android.DaggerFragment
+import dagger.android.support.DaggerFragment
 import pl.lusy.jojo.journeyjournal.databinding.FragmentMainBinding
 
 class MainFragment : DaggerFragment() {
