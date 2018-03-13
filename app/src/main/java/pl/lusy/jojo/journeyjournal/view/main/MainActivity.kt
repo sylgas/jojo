@@ -1,5 +1,7 @@
 package pl.lusy.jojo.journeyjournal.view.main
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
@@ -15,6 +17,7 @@ import pl.lusy.jojo.journeyjournal.view.common.setupActionDrawer
 import pl.lusy.jojo.journeyjournal.view.common.startCustomActivity
 import pl.lusy.jojo.journeyjournal.view.details.TripDetailsActivity
 import pl.lusy.jojo.journeyjournal.view.main.fragment.MainFragment
+import pl.lusy.jojo.journeyjournal.view.main.model.MainViewModel
 import pl.lusy.jojo.journeyjournal.view.welcome.WelcomeActivity
 
 class MainActivity : FrameCoreActivity() {
@@ -22,12 +25,29 @@ class MainActivity : FrameCoreActivity() {
         fun start(context: Context) = context.startCustomActivity<MainActivity>()
     }
 
+    private val mainModel: MainViewModel by lazy {
+        ViewModelProviders.of(this).get(MainViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupActivityFrame()
         setupFragment()
-        WelcomeActivity.start(this)
+        setupViewListeners()
+    }
+
+    private fun setupViewListeners() {
+        mainModel.displayWelcomeScreen.observe(this, Observer<Boolean?> {
+            showWelcomeScreen(it)
+        })
+    }
+
+    private fun showWelcomeScreen(shouldShowWelcomeScreen: Boolean?) {
+        if (shouldShowWelcomeScreen == true) {
+            WelcomeActivity.start(this)
+            mainModel.onWelcomeScreenShown()
+        }
     }
 
     private fun setupActivityFrame() {
