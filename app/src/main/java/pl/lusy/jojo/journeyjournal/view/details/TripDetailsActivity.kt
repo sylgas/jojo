@@ -2,7 +2,7 @@ package pl.lusy.jojo.journeyjournal.view.details
 
 import android.content.Context
 import android.os.Bundle
-import kotlinx.android.synthetic.main.toolbar_app.*
+import kotlinx.android.synthetic.main.toolbar_bar.*
 import pl.lusy.jojo.journeyjournal.R
 import pl.lusy.jojo.journeyjournal.view.common.CoreActivity
 import pl.lusy.jojo.journeyjournal.view.common.replaceContentWithFragment
@@ -24,7 +24,6 @@ class TripDetailsActivity : CoreActivity() {
     private fun setupActivityFrame() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        setTitle(R.string.action_default_title)
     }
 
     private fun setupFragment() {

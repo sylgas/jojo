@@ -9,7 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.navigation_drawer_view.*
-import kotlinx.android.synthetic.main.toolbar_app.*
+import kotlinx.android.synthetic.main.toolbar_bar.*
 import pl.lusy.jojo.journeyjournal.R
 import pl.lusy.jojo.journeyjournal.view.common.FrameCoreActivity
 import pl.lusy.jojo.journeyjournal.view.common.replaceContentWithFragment
@@ -52,7 +52,6 @@ class MainActivity : FrameCoreActivity() {
 
     private fun setupActivityFrame() {
         setSupportActionBar(toolbar)
-        setTitle(R.string.action_default_title)
         setupFabButton()
         setupNavDrawer()
     }

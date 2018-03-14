@@ -3,11 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/toolbar_app" />
+    <include
+        android:id="@+id/toolbar_bar"
+        layout="@layout/toolbar_bar" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        style="@style/ToolbarActivityContent" />
 
 </android.support.constraint.ConstraintLayout>

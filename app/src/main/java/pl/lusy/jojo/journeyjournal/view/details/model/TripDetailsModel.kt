@@ -7,7 +7,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import pl.lusy.jojo.journeyjournal.data.prefs.TripData
-import pl.lusy.jojo.journeyjournal.data.prefs.asFlowable
+import pl.lusy.jojo.journeyjournal.data.prefs.asSingle
 
 class TripDetailsModel : ViewModel() {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
@@ -16,11 +16,15 @@ class TripDetailsModel : ViewModel() {
     val tripName: LiveData<String> = mutableTripName
 
     init {
-        TripData.asFlowable(TripData::name)
-            .subscribeBy(onNext = {
+        TripData.asSingle(TripData::name)
+            .subscribeBy(onSuccess = {
                 mutableTripName.value = it
             })
             .addTo(compositeDisposable)
+    }
+
+    fun onTripNameChange(name: String) {
+        TripData.name = name
     }
 
     override fun onCleared() {
