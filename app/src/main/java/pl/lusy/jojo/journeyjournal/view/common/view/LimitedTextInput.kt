@@ -9,6 +9,7 @@ import android.util.AttributeSet
 import kotlinx.android.synthetic.main.view_limited_text_input.view.*
 import pl.lusy.jojo.journeyjournal.R
 import pl.lusy.jojo.journeyjournal.extension.setMaxLength
+import pl.lusy.jojo.journeyjournal.extension.shown
 
 class LimitedTextInput @JvmOverloads constructor(
     context: Context,
@@ -40,6 +41,10 @@ class LimitedTextInput @JvmOverloads constructor(
 
     fun addTextChangedListener(textWatcher: TextWatcher) {
         inputText.addTextChangedListener(textWatcher)
+    }
+
+    fun setTextLimitDetailsVisible(isVisible: Boolean) {
+        limitDetails.shown = isVisible
     }
 
     fun setText(textString: String?) {

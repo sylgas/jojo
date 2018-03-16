@@ -5,7 +5,7 @@
 
     <include
         android:id="@+id/toolbar_bar"
-        layout="@layout/toolbar_bar" />
+        layout="@layout/toolbar_bar_form" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/content"

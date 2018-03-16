@@ -24,7 +24,11 @@ class TripDetailsModel : ViewModel() {
     }
 
     fun onTripNameChange(name: String) {
-        TripData.name = name
+        mutableTripName.value = name
+    }
+
+    fun onSave() {
+        TripData.name = tripName.value ?: ""
     }
 
     override fun onCleared() {

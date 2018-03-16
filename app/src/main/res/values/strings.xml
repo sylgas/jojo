@@ -4,6 +4,7 @@
     <!--Action menu-->
     <string name="action_default_title">@string/app_name</string>
     <string name="action_search">Search</string>
+    <string name="action_save">Save</string>
 
     <!--Navigation drawer-->
     <string name="nav_drawer_title">Let\'s start!</string>

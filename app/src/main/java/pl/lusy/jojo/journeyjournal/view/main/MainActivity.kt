@@ -11,7 +11,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.navigation_drawer_view.*
 import kotlinx.android.synthetic.main.toolbar_bar.*
 import pl.lusy.jojo.journeyjournal.R
-import pl.lusy.jojo.journeyjournal.view.common.FrameCoreActivity
+import pl.lusy.jojo.journeyjournal.extension.toast
+import pl.lusy.jojo.journeyjournal.view.common.NavigationCoreActivity
 import pl.lusy.jojo.journeyjournal.view.common.replaceContentWithFragment
 import pl.lusy.jojo.journeyjournal.view.common.setupActionDrawer
 import pl.lusy.jojo.journeyjournal.view.common.startCustomActivity
@@ -20,7 +21,7 @@ import pl.lusy.jojo.journeyjournal.view.main.fragment.MainFragment
 import pl.lusy.jojo.journeyjournal.view.main.model.MainViewModel
 import pl.lusy.jojo.journeyjournal.view.welcome.WelcomeActivity
 
-class MainActivity : FrameCoreActivity() {
+class MainActivity : NavigationCoreActivity() {
     companion object {
         fun start(context: Context) = context.startCustomActivity<MainActivity>()
     }
@@ -72,6 +73,18 @@ class MainActivity : FrameCoreActivity() {
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         super.onNavigationItemSelected(item)
         drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_search -> handleActionSearch()
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun handleActionSearch(): Boolean {
+        toast(R.string.not_yet_implemented)
         return true
     }
 

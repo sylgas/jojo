@@ -33,7 +33,6 @@
         <activity
             android:name=".view.details.TripDetailsActivity"
             android:parentActivityName=".view.main.MainActivity"
-            android:label="@string/trip_details_activity_label"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
