@@ -8,4 +8,8 @@
     <!--Welcome-->
     <dimen name="progress_dots_size">10dp</dimen>
     <dimen name="button_separator_height">1dp</dimen>
+
+    <!--Trip Details-->
+    <dimen name="trip_details_end_date_padding">72dp</dimen>
+    <dimen name="trip_details_start_date_padding">56dp</dimen>
 </resources>
