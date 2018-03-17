@@ -6,9 +6,9 @@ import android.arch.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
+import pl.lusy.jojo.journeyjournal.data.model.DayDate
 import pl.lusy.jojo.journeyjournal.data.prefs.TripData
 import pl.lusy.jojo.journeyjournal.data.prefs.asSingle
-import java.util.*
 
 class TripDetailsModel : ViewModel() {
 
@@ -17,11 +17,11 @@ class TripDetailsModel : ViewModel() {
     private val mutableTripName: MutableLiveData<String> = MutableLiveData()
     val tripName: LiveData<String> = mutableTripName
 
-    private val mutableTripStartDate: MutableLiveData<Date> = MutableLiveData()
-    val tripStartDate: LiveData<Date> = mutableTripStartDate
+    private val mutableTripStartDate: MutableLiveData<DayDate> = MutableLiveData()
+    val tripStartDate: LiveData<DayDate> = mutableTripStartDate
 
-    private val mutableTripEndDate: MutableLiveData<Date> = MutableLiveData()
-    val tripEndDate: LiveData<Date> = mutableTripEndDate
+    private val mutableTripEndDate: MutableLiveData<DayDate> = MutableLiveData()
+    val tripEndDate: LiveData<DayDate> = mutableTripEndDate
 
     init {
         TripData.asSingle(TripData::name)
@@ -43,7 +43,8 @@ class TripDetailsModel : ViewModel() {
             .addTo(compositeDisposable)
     }
 
-    private fun getDateFromMillis(milis: Long) = if (milis == 0L) Date() else Date(milis)
+    private fun getDateFromMillis(millis: Long) =
+        if (millis == 0L) DayDate.getCurrentDate() else DayDate.fromMillis(millis)
 
     fun onTripNameChange(name: String) {
         mutableTripName.value = name
@@ -51,8 +52,8 @@ class TripDetailsModel : ViewModel() {
 
     fun onSave() {
         TripData.name = tripName.value ?: ""
-        TripData.startDate = tripStartDate.value?.time ?: 0L
-        TripData.endDate = tripEndDate.value?.time ?: 0L
+        TripData.startDate = tripStartDate.value?.millis ?: 0L
+        TripData.endDate = tripEndDate.value?.millis ?: 0L
     }
 
     override fun onCleared() {
@@ -61,16 +62,10 @@ class TripDetailsModel : ViewModel() {
     }
 
     fun onTripStartDateSet(year: Int, month: Int, dayOfMonth: Int) {
-        mutableTripStartDate.value = getDate(year, month, dayOfMonth)
+        mutableTripStartDate.value = DayDate(dayOfMonth, month, year)
     }
 
     fun onTripEndDateSet(year: Int, month: Int, dayOfMonth: Int) {
-        mutableTripEndDate.value = getDate(year, month, dayOfMonth)
-    }
-
-    fun getDate(year: Int, month: Int, dayOfMonth: Int): Date {
-        val calendar = Calendar.getInstance()
-        calendar.set(year, month, dayOfMonth)
-        return calendar.time
+        mutableTripEndDate.value = DayDate(dayOfMonth, month, year)
     }
 }

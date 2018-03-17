@@ -10,15 +10,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_trip_details.*
+import pl.lusy.jojo.journeyjournal.data.model.DayDate
 import pl.lusy.jojo.journeyjournal.databinding.FragmentTripDetailsBinding
 import pl.lusy.jojo.journeyjournal.view.details.model.TripDetailsModel
-import java.text.DateFormat
-import java.util.*
 
-var TextView.date: Date
-    get() = DateFormat.getDateInstance().parse(text.toString())
+var TextView.dayDate: DayDate
+    get() = DayDate.parse(text.toString())
     set(value) {
-        text = DateFormat.getDateInstance().format(value)
+        text = value.toString()
     }
 
 class TripDetailsFragment : DaggerFragment() {
@@ -53,32 +52,31 @@ class TripDetailsFragment : DaggerFragment() {
 
     private fun setupView() {
         tripEndDate.setOnClickListener({
-            showSelectDateDialog(tripEndDate.date, endDateChangeListener)
+            showSelectDateDialog(tripEndDate.dayDate, endDateChangeListener)
         })
         tripStartDate.setOnClickListener({
-            showSelectDateDialog(tripStartDate.date, startDateChangeListener)
+            showSelectDateDialog(tripStartDate.dayDate, startDateChangeListener)
         })
     }
 
-    private fun showSelectDateDialog(date: Date, listener: DatePickerDialog.OnDateSetListener) {
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
-        DatePickerDialog(context, listener, year, month, dayOfMonth).show()
+    private fun showSelectDateDialog(date: DayDate, listener: DatePickerDialog.OnDateSetListener) {
+        DatePickerDialog(context, listener, date.year, date.month, date.day).show()
     }
 
     private fun setupViewListeners() {
-        tripModel.tripStartDate.observe(this, Observer<Date?> { updateTripStartDate(it!!) })
-        tripModel.tripEndDate.observe(this, Observer<Date?> { updateTripEndDate(it!!) })
+        tripModel.tripStartDate.observe(this, Observer<DayDate?> {
+            updateTripStartDate(it!!)
+        })
+        tripModel.tripEndDate.observe(this, Observer<DayDate?> {
+            updateTripEndDate(it!!)
+        })
     }
 
-    private fun updateTripEndDate(date: Date) {
-        tripEndDate.date = date
+    private fun updateTripEndDate(date: DayDate) {
+        tripEndDate.dayDate = date
     }
 
-    private fun updateTripStartDate(date: Date) {
-        tripStartDate.date = date
+    private fun updateTripStartDate(date: DayDate) {
+        tripStartDate.dayDate = date
     }
 }

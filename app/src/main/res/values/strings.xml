@@ -38,6 +38,9 @@
     <string name="trip_details_name">Trip Name</string>
     <string name="trip_details_limit_desc">Max %d characters</string>
 
+    <!--History-->
+    <string name="history_activity_label">All trips</string>
+
     <!--Common-->
     <string name="not_yet_implemented">Not yet implemented</string>
     <string name="next">Next</string>

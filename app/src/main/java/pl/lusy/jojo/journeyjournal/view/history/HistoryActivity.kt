@@ -1,12 +1,10 @@
-package pl.lusy.jojo.journeyjournal.view.main
+package pl.lusy.jojo.journeyjournal.view.history
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_history.*
 import kotlinx.android.synthetic.main.navigation_drawer_view.*
 import kotlinx.android.synthetic.main.toolbar_bar.*
 import pl.lusy.jojo.journeyjournal.R
@@ -15,49 +13,18 @@ import pl.lusy.jojo.journeyjournal.view.common.replaceContentWithFragment
 import pl.lusy.jojo.journeyjournal.view.common.setupActionDrawer
 import pl.lusy.jojo.journeyjournal.view.common.startCustomActivity
 import pl.lusy.jojo.journeyjournal.view.details.TripDetailsActivity
-import pl.lusy.jojo.journeyjournal.view.history.HistoryActivity
-import pl.lusy.jojo.journeyjournal.view.main.fragment.MainFragment
-import pl.lusy.jojo.journeyjournal.view.main.model.MainViewModel
-import pl.lusy.jojo.journeyjournal.view.welcome.WelcomeActivity
+import pl.lusy.jojo.journeyjournal.view.history.fragment.HistoryFragment
 
-class MainActivity : SearchNavigationCoreActivity() {
+class HistoryActivity : SearchNavigationCoreActivity() {
     companion object {
-        fun start(context: Context) = context.startCustomActivity<MainActivity>()
-    }
-
-    private val mainModel: MainViewModel by lazy {
-        ViewModelProviders.of(this).get(MainViewModel::class.java)
+        fun start(context: Context) = context.startCustomActivity<HistoryActivity>()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_history)
         setupActivityFrame()
         setupFragment()
-        setupViewListeners()
-    }
-
-    private fun setupViewListeners() {
-        mainModel.displayWelcomeScreen.observe(this, Observer<Boolean?> {
-            showWelcomeScreen(it)
-        })
-        mainModel.displayHistory.observe(this, Observer<Boolean?> {
-            showHistory(it)
-        })
-    }
-
-    private fun showHistory(showHistory: Boolean?) {
-        if (showHistory == true) {
-            HistoryActivity.start(this)
-            finish()
-        }
-    }
-
-    private fun showWelcomeScreen(shouldShowWelcomeScreen: Boolean?) {
-        if (shouldShowWelcomeScreen == true) {
-            WelcomeActivity.start(this)
-            mainModel.onWelcomeScreenShown()
-        }
     }
 
     private fun setupActivityFrame() {
@@ -67,7 +34,7 @@ class MainActivity : SearchNavigationCoreActivity() {
     }
 
     private fun setupFragment() {
-        replaceContentWithFragment(MainFragment.newInstance())
+        replaceContentWithFragment(HistoryFragment.newInstance())
     }
 
     private fun setupFabButton() {
