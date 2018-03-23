@@ -1,7 +1,6 @@
 package pl.lusy.jojo.journeyjournal.data.prefs
 
 import android.content.SharedPreferences
-import android.support.annotation.CheckResult
 import com.chibatching.kotpref.KotprefModel
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
@@ -12,7 +11,6 @@ object Preferences : KotprefModel() {
     var displayWelcomeScreen by booleanPref(default = true)
 }
 
-@CheckResult
 fun <T> KotprefModel.asFlowable(property: KProperty0<T>): Flowable<T> =
     Flowable.create<T>({ emitter ->
         val observedPropertyKey = property.name
@@ -27,6 +25,5 @@ fun <T> KotprefModel.asFlowable(property: KProperty0<T>): Flowable<T> =
         preferences.registerOnSharedPreferenceChangeListener(listener)
     }, BackpressureStrategy.LATEST)
 
-@CheckResult
 fun <T> KotprefModel.asSingle(property: KProperty0<T>): Single<T> =
     Single.create<T>({ emitter -> emitter.onSuccess(property.get()) })

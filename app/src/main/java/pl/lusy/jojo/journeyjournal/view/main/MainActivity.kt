@@ -37,6 +37,15 @@ class MainActivity : SearchNavigationCoreActivity() {
         setupViewListeners()
     }
 
+    override fun onResume() {
+        super.onResume()
+        updateActivityFrame()
+    }
+
+    private fun updateActivityFrame() {
+        navView.setCheckedItem(R.id.nav_start)
+    }
+
     private fun setupViewListeners() {
         mainModel.displayWelcomeScreen.observe(this, Observer<Boolean?> {
             showWelcomeScreen(it)
