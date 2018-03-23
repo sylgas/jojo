@@ -12,6 +12,7 @@
     <string name="nav_drawer_close">Close navigation drawer</string>
 
     <string name="nav_drawer_gallery">Gallery</string>
+    <string name="nav_drawer_trip_plan">Trip Plan</string>
     <string name="nav_drawer_category_other">Settings</string>
     <string name="nav_drawer_settings">Settings</string>
 
@@ -40,6 +41,9 @@
 
     <!--History-->
     <string name="history_activity_label">All trips</string>
+
+    <!--History-->
+    <string name="plan_activity_label">Plan details</string>
 
     <!--Common-->
     <string name="not_yet_implemented">Not yet implemented</string>

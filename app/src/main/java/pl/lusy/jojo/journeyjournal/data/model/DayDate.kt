@@ -36,7 +36,7 @@ data class DayDate(val day: Int, val month: Int, val year: Int) {
 
         fun parse(dateString: String): DayDate {
             val date = DateFormat.getDateInstance().parse(dateString)
-            return DayDate.fromMillis(date.time)
+            return fromMillis(date.time)
         }
     }
 
