@@ -7,7 +7,7 @@
 
         <variable
             name="homeItem"
-            type="pl.lusy.jojo.journeyjournal.view.main.model.item.HomeItem" />
+            type="pl.lusy.jojo.journeyjournal.view.main.adapter.item.HomeItem" />
     </data>
 
     <android.support.v7.widget.CardView
