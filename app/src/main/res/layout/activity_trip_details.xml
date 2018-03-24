@@ -9,6 +9,6 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/content"
-        style="@style/ToolbarActivityContent" />
+        style="@style/ToolbarCoordinatorActivityContent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -39,6 +39,7 @@ dependencies {
 
     implementation "com.android.support:appcompat-v7:$app_compat_version"
     implementation "com.android.support:design:$app_compat_version"
+    implementation "com.android.support:recyclerview-v7:$app_compat_version"
     implementation "com.android.support.constraint:constraint-layout:$constrait_layout_version"
 
     implementation "android.arch.lifecycle:extensions:$arch_lifecycle_version"

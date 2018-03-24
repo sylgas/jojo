@@ -12,17 +12,29 @@ import pl.lusy.jojo.journeyjournal.data.model.DayDate
 import pl.lusy.jojo.journeyjournal.data.prefs.Preferences
 import pl.lusy.jojo.journeyjournal.data.prefs.TripData
 import pl.lusy.jojo.journeyjournal.data.prefs.asSingle
+import pl.lusy.jojo.journeyjournal.view.main.model.item.HomeItem
+import pl.lusy.jojo.journeyjournal.view.main.model.item.LocationHomeItem
+import pl.lusy.jojo.journeyjournal.view.main.model.item.PlanHomeItem
+import pl.lusy.jojo.journeyjournal.view.main.model.item.TripHomeItem
 
 class MainViewModel : ViewModel() {
-    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
+    private val compositeDisposable = CompositeDisposable()
 
-    private val mutableDisplayWelcomeScreen: MutableLiveData<Boolean> = MutableLiveData()
+    private val mutableDisplayWelcomeScreen = MutableLiveData<Boolean>()
     val displayWelcomeScreen: LiveData<Boolean> = mutableDisplayWelcomeScreen
+
+    private val mutableHomeItems = MutableLiveData<List<HomeItem>>()
+    val homeItems: LiveData<List<HomeItem>> = mutableHomeItems;
 
     private val mutableDisplayHistory: MutableLiveData<Boolean> = MutableLiveData()
     val displayHistory: LiveData<Boolean> = mutableDisplayHistory
 
     init {
+        mutableHomeItems.value = listOf(
+            TripHomeItem(),
+            PlanHomeItem(),
+            LocationHomeItem()
+        )
         Preferences.asSingle(Preferences::displayWelcomeScreen)
             .subscribeBy(onSuccess = {
                 mutableDisplayWelcomeScreen.value = it
