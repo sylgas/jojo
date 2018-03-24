@@ -1,4 +1,4 @@
-package pl.lusy.jojo.journeyjournal.view.main.model.item
+package pl.lusy.jojo.journeyjournal.view.main.adapter.item
 
 sealed class HomeItem(val title: String, val description: String)
 
