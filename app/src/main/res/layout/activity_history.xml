@@ -16,9 +16,9 @@
             android:id="@+id/toolbar_bar"
             layout="@layout/toolbar_bar" />
 
-        <android.support.constraint.ConstraintLayout
+        <FrameLayout
             android:id="@+id/content"
-            style="@style/ToolbarCoordinatorActivityContent" />
+            style="@style/ToolbarFrameLayoutActivityContent" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"

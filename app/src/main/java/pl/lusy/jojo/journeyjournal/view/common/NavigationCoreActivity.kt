@@ -5,8 +5,8 @@ import android.support.design.widget.NavigationView
 import android.view.MenuItem
 import pl.lusy.jojo.journeyjournal.R
 import pl.lusy.jojo.journeyjournal.extension.toast
+import pl.lusy.jojo.journeyjournal.view.history.HistoryActivity
 import pl.lusy.jojo.journeyjournal.view.main.MainActivity
-import pl.lusy.jojo.journeyjournal.view.plan.TripPlanActivity
 
 @SuppressLint("Registered")
 abstract class NavigationCoreActivity : CoreActivity(),
@@ -17,8 +17,8 @@ abstract class NavigationCoreActivity : CoreActivity(),
             R.id.nav_start -> {
                 handleHomeSelect()
             }
-            R.id.nav_all_trips -> {
-                handleTripPlanSelect()
+            R.id.nav_history -> {
+                handleHistorySelect()
             }
             R.id.nav_gallery -> {
                 handleGallerySelect()
@@ -40,11 +40,11 @@ abstract class NavigationCoreActivity : CoreActivity(),
     }
 
     private fun handleHomeSelect() {
-        MainActivity.start(this);
+        MainActivity.start(this)
     }
 
-    private fun handleTripPlanSelect() {
-        TripPlanActivity.start(this)
+    private fun handleHistorySelect() {
+        HistoryActivity.start(this)
     }
 
 }

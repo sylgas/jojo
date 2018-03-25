@@ -11,6 +11,8 @@ class PlanDatabaseRepository @Inject constructor(
 ) : PlanRepository {
 
     override fun get(id: Long): Flowable<Plan> =
-        database.getWithRelation(id).map { it.toPlan() }
+        database.getWithRelation(id)
+            .map { it.toPlan() }
+            .subscribeIo()
 
 }

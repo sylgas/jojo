@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import pl.lusy.jojo.journeyjournal.data.model.DayDate
 import pl.lusy.jojo.journeyjournal.data.model.Trip
@@ -24,7 +25,7 @@ class TripDetailsModel @Inject constructor(
     private val mutableIsLoading: MutableLiveData<Boolean> = MutableLiveData()
     val isLoading: LiveData<Boolean> = mutableIsLoading
 
-    private val mutableTrip : MutableLiveData<Trip> = MutableLiveData()
+    private val mutableTrip: MutableLiveData<Trip> = MutableLiveData()
     val trip: LiveData<Trip> = mutableTrip
 
     init {
@@ -48,6 +49,9 @@ class TripDetailsModel @Inject constructor(
     fun onSave() {
         trip.value?.let {
             repository.save(it)
+                .subscribeBy(onError = {
+                    mutableErrorMessage.value = it.message
+                }).addTo(compositeDisposable)
         }
     }
 

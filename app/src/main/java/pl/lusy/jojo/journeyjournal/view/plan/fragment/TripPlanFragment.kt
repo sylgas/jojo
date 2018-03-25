@@ -42,13 +42,14 @@ class TripPlanFragment : DaggerFragment() {
 
     private fun setupViewListeners() {
         planModel.planSteps.observe(this, Observer {
-            updateTripSteps(it!!)
+            updateTripSteps(it)
         })
     }
 
-    private fun updateTripSteps(steps: List<PlanStep>) {
+    private fun updateTripSteps(steps: List<PlanStep>?) {
         if (view != null) {
-            Snackbar.make(view!!, steps.size.toString(), Snackbar.LENGTH_LONG)
+            val stepAmount = steps?.size
+            Snackbar.make(view!!, stepAmount.toString(), Snackbar.LENGTH_LONG)
         }
 
     }

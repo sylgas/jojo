@@ -41,10 +41,10 @@ class TripDetailsActivity : CoreActivity() {
 
     private val tripNameWatcher = object : TextWatcher {
         override fun afterTextChanged(text: Editable?) {
+            tripModel.onTripNameChange(text.toString())
         }
 
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            tripModel.onTripNameChange(p0.toString())
         }
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -70,6 +70,7 @@ class TripDetailsActivity : CoreActivity() {
 
     private fun updateTripNameView(name: String?) {
         tripName.setText(name)
+        tripName.requestFocus()
     }
 
     private fun setupActivityFrame() {

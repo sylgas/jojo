@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="homeItem"
+            name="item"
             type="pl.lusy.jojo.journeyjournal.view.main.adapter.item.HomeItem" />
     </data>
 
@@ -27,7 +27,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/activity_margin_small"
-                android:text="@{homeItem.title}"
+                android:text="@{item.title}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/activity_margin_small"
-                android:text="@{homeItem.description}"
+                android:text="@{item.description}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

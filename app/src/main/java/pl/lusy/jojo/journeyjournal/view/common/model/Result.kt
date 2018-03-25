@@ -1,6 +1,7 @@
 package pl.lusy.jojo.journeyjournal.view.common.model
 
 import io.reactivex.Flowable
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 class Result<out T>(
     val data: T? = null,
@@ -15,5 +16,6 @@ fun <T> Flowable<T>.toResult(): Flowable<Result<T>> {
             .map { Result(data = it) }
             .onErrorReturn { e -> Result(errorMessage = e.message) }
             .startWith(Result(isLoading = true))
+            .observeOn(AndroidSchedulers.mainThread())
     }
 }

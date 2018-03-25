@@ -2,6 +2,7 @@ package pl.lusy.jojo.journeyjournal.view.details.fragment
 
 import android.app.DatePickerDialog
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import pl.lusy.jojo.journeyjournal.data.model.DayDate
 import pl.lusy.jojo.journeyjournal.data.model.Trip
 import pl.lusy.jojo.journeyjournal.databinding.FragmentTripDetailsBinding
 import pl.lusy.jojo.journeyjournal.view.details.model.TripDetailsModel
+import javax.inject.Inject
 
 var TextView.dayDate: DayDate
     get() = DayDate.parse(text.toString())
@@ -26,8 +28,11 @@ class TripDetailsFragment : DaggerFragment() {
         fun newInstance(): TripDetailsFragment = TripDetailsFragment()
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
     private val tripModel: TripDetailsModel by lazy {
-        ViewModelProviders.of(activity!!).get(TripDetailsModel::class.java)
+        ViewModelProviders.of(activity!!, viewModelFactory).get(TripDetailsModel::class.java)
     }
 
     private val startDateChangeListener =

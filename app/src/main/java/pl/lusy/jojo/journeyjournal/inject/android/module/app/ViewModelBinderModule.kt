@@ -8,6 +8,7 @@ import dagger.multibindings.IntoMap
 import pl.lusy.jojo.journeyjournal.inject.android.factory.ViewModelFactory
 import pl.lusy.jojo.journeyjournal.inject.android.key.ViewModelKey
 import pl.lusy.jojo.journeyjournal.view.details.model.TripDetailsModel
+import pl.lusy.jojo.journeyjournal.view.history.model.HistoryModel
 import pl.lusy.jojo.journeyjournal.view.plan.model.TripPlanModel
 
 @Module
@@ -25,5 +26,10 @@ interface ViewModelBinderModule {
     @IntoMap
     @ViewModelKey(TripDetailsModel::class)
     fun bindTripDetailsModel(model: TripDetailsModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HistoryModel::class)
+    fun bindHistoryModel(model: HistoryModel): ViewModel
 
 }
