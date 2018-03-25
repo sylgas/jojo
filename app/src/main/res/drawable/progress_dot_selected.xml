@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@color/progress_dots_selected" />
+    <size
+        android:width="@dimen/progress_dots_size"
+        android:height="@dimen/progress_dots_size" />
+</shape>

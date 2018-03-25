@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:background="@color/colorPrimary">
+
+    <View
+        android:id="@+id/buttonsSeparator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_separator_height"
+        android:alpha=".5"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/nextButton" />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/activity_margin_small"
+        android:background="@null"
+        android:text="@string/next"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/skipButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_margin_small"
+        android:background="@null"
+        android:text="@string/skip"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/secondStepDot"
+        android:contentDescription="@string/welcome_step_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_margin_small"
+        android:layout_marginEnd="@dimen/activity_margin_small"
+        android:layout_marginStart="@dimen/activity_margin_small"
+        android:layout_marginTop="@dimen/activity_margin_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/nextButton"
+        app:layout_constraintStart_toEndOf="@+id/skipButton"
+        app:layout_constraintTop_toBottomOf="@+id/buttonsSeparator"
+        app:srcCompat="@drawable/progress_dot" />
+
+    <ImageView
+        android:id="@+id/firstStepDot"
+        android:contentDescription="@string/welcome_step_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/activity_margin_small"
+        app:layout_constraintEnd_toStartOf="@+id/secondStepDot"
+        app:layout_constraintTop_toTopOf="@+id/secondStepDot"
+        app:srcCompat="@drawable/progress_dot" />
+
+    <ImageView
+        android:id="@+id/thirdStepDot"
+        android:contentDescription="@string/welcome_step_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_margin_small"
+        app:layout_constraintStart_toEndOf="@+id/secondStepDot"
+        app:layout_constraintTop_toTopOf="@+id/secondStepDot"
+        app:srcCompat="@drawable/progress_dot" />
+</android.support.constraint.ConstraintLayout>

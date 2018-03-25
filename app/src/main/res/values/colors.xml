@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ic_launcher_background">#4CAF50</color>
-    <color name="colorPrimary">#4CAF50</color>
-    <color name="colorPrimaryDark">#2E7D32</color>
-    <color name="colorAccent">#FFAB00</color>
+    <!--Palette-->
+    <color name="white">@android:color/white</color>
+    <color name="light_green">#4CAF50</color>
+    <color name="dark_green">#2E7D32</color>
+    <color name="yellow">#FFAB00</color>
+    <color name="dimmed_black">#54000000</color>
+
+    <!--Primary-->
+    <color name="ic_launcher_background">@color/light_green</color>
+    <color name="colorPrimary">@color/light_green</color>
+    <color name="colorPrimaryDark">@color/dark_green</color>
+    <color name="colorAccent">@color/yellow</color>
+
+    <!--Common-->
+    <color name="app_image">@color/dimmed_black</color>
+
+    <!--Splash Screen-->
+    <color name="splash_screen_background">@color/white</color>
+
+    <!--Welcome-->
+    <color name="progress_dots_selected">@color/white</color>
+    <color name="progress_dots">@color/dimmed_black</color>
 </resources>

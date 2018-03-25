@@ -4,6 +4,7 @@
     <!--Action menu-->
     <string name="action_default_title">@string/app_name</string>
     <string name="action_search">Search</string>
+    <string name="action_save">Save</string>
 
     <!--Navigation drawer-->
     <string name="nav_drawer_title">Let\'s start!</string>
@@ -11,15 +12,43 @@
     <string name="nav_drawer_close">Close navigation drawer</string>
 
     <string name="nav_drawer_gallery">Gallery</string>
-    <string name="nav_drawer_category_other">Settings</string>
+    <string name="nav_drawer_home">Start</string>
+    <string name="nav_drawer_all_trips">All Trips</string>
+    <string name="nav_drawer_category_other">Other</string>
     <string name="nav_drawer_settings">Settings</string>
 
     <!--About-->
     <string name="about_activity_label">About</string>
 
+    <!--Welcome-->
+    <string name="welcome_activity_label">Welcome</string>
+    <string name="plan_trip_title">Plan trip</string>
+    <string name="plan_trip_description">Plan trip and times and places</string>
+    <string name="take_photos_title">Take photos</string>
+    <string name="take_photos_description">Take photos, record your trip</string>
+    <string name="enjoy_title">Enjoy</string>
+    <string name="enjoy_description">Start your trip</string>
+
     <!--Image description-->
     <string name="app_icon_description">Journey Journal</string>
+    <string name="welcome_step_description">Quick tutorial progress</string>
+    <string name="welcome_icon_description">Quick tutorial image</string>
+    <string name="trip_details_date_description">Trip date</string>
 
-    <!--Other-->
+    <!--Trip details-->
+    <string name="trip_details_activity_label">Trip Details</string>
+    <string name="trip_details_name">Trip Name</string>
+    <string name="trip_details_limit_desc">Max %d characters</string>
+
+    <!--History-->
+    <string name="history_activity_label">All trips</string>
+
+    <!--History-->
+    <string name="plan_activity_label">Plan details</string>
+
+    <!--Common-->
     <string name="not_yet_implemented">Not yet implemented</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="separator" translatable="false">/</string>
 </resources>

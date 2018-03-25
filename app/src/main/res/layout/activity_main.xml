@@ -8,18 +8,28 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <include
-        layout="@layout/activity_main_frame"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/navView"
-        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/activity_main_nav_header"
-        app:menu="@menu/activity_main_drawer" />
+        tools:context="pl.lusy.jojo.journeyjournal.view.main.MainActivity">
+
+        <include
+            android:id="@+id/toolbar_bar"
+            layout="@layout/toolbar_bar" />
+
+        <FrameLayout
+            android:id="@+id/content"
+            style="@style/ToolbarFrameLayoutActivityContent" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@drawable/ic_button_add" />
+    </android.support.design.widget.CoordinatorLayout>
+
+    <include layout="@layout/navigation_drawer_view" />
 
 </android.support.v4.widget.DrawerLayout>

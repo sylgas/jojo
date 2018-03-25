@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Trip Details-->
+    <integer name="trip_details_name_limit">25</integer>
+</resources>
