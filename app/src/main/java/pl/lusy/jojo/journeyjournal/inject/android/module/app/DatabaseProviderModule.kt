@@ -4,10 +4,9 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import io.github.droidkaigi.confsched2018.data.db.LocalRoomDatabase
-import pl.lusy.jojo.journeyjournal.data.db.PlanDatabase
-import pl.lusy.jojo.journeyjournal.data.db.PlanRoomDatabase
+import pl.lusy.jojo.journeyjournal.data.db.*
 import pl.lusy.jojo.journeyjournal.data.db.dao.PlanDao
+import pl.lusy.jojo.journeyjournal.data.db.dao.TripDao
 import pl.lusy.jojo.journeyjournal.inject.android.scope.AppScope
 
 @Module
@@ -27,5 +26,13 @@ internal class DatabaseProviderModule {
     @Provides
     @AppScope
     fun providePlanDao(database: LocalRoomDatabase): PlanDao = database.getPlanDao()
+
+    @Provides
+    @AppScope
+    fun provideTripDatabase(tripDao: TripDao): TripDatabase = TripRoomDatabase(tripDao)
+
+    @Provides
+    @AppScope
+    fun provideTripDao(database: LocalRoomDatabase): TripDao = database.getTripDao()
 
 }

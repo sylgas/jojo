@@ -9,8 +9,12 @@ import io.reactivex.rxkotlin.subscribeBy
 import pl.lusy.jojo.journeyjournal.data.model.DayDate
 import pl.lusy.jojo.journeyjournal.data.prefs.TripData
 import pl.lusy.jojo.journeyjournal.data.prefs.asSingle
+import pl.lusy.jojo.journeyjournal.data.repository.TripRepository
+import javax.inject.Inject
 
-class TripDetailsModel : ViewModel() {
+class TripDetailsModel @Inject constructor(
+    private val repository: TripRepository
+) : ViewModel() {
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 

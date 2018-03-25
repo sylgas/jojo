@@ -2,28 +2,29 @@ package pl.lusy.jojo.journeyjournal.data.db.entity
 
 import android.arch.persistence.room.*
 import android.arch.persistence.room.ForeignKey.CASCADE
+import pl.lusy.jojo.journeyjournal.data.model.DayDate
 
 @Entity(
-    tableName = "plan_steps",
+    tableName = "trip",
     indices = [
-        Index(name = "step_plan_index", value = ["planId"])
+        Index(name = "trip_plan_index", value = ["planId"], unique = true)
     ],
     foreignKeys = [
-        ForeignKey(
+        (ForeignKey(
             entity = PlanEntity::class,
             parentColumns = ["id"],
             childColumns = ["planId"],
             onDelete = CASCADE
-        )
-    ]
-)
-data class PlanStepEntity @Ignore constructor(
+        ))
+    ])
+data class TripEntity @Ignore constructor(
     @PrimaryKey(autoGenerate = true)
     var id: Long?,
     var planId: Long?,
 
-    var title: String,
-    var description: String
+    var name: String = "",
+    var startDate: DayDate?,
+    var endDate: DayDate?
 ) : DatabaseEntity {
-    constructor(): this(null, null, "", "")
+    constructor() : this(null, null, "", null, null)
 }
