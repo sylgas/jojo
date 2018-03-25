@@ -15,7 +15,6 @@ import pl.lusy.jojo.journeyjournal.view.common.replaceContentWithFragment
 import pl.lusy.jojo.journeyjournal.view.common.setupActionDrawer
 import pl.lusy.jojo.journeyjournal.view.common.startCustomActivity
 import pl.lusy.jojo.journeyjournal.view.details.TripDetailsActivity
-import pl.lusy.jojo.journeyjournal.view.history.HistoryActivity
 import pl.lusy.jojo.journeyjournal.view.main.fragment.MainFragment
 import pl.lusy.jojo.journeyjournal.view.main.model.MainViewModel
 import pl.lusy.jojo.journeyjournal.view.welcome.WelcomeActivity
@@ -50,16 +49,6 @@ class MainActivity : SearchNavigationCoreActivity() {
         mainModel.displayWelcomeScreen.observe(this, Observer<Boolean?> {
             showWelcomeScreen(it)
         })
-        mainModel.displayHistory.observe(this, Observer<Boolean?> {
-            showHistory(it)
-        })
-    }
-
-    private fun showHistory(showHistory: Boolean?) {
-        if (showHistory == true) {
-            HistoryActivity.start(this)
-            finish()
-        }
     }
 
     private fun showWelcomeScreen(shouldShowWelcomeScreen: Boolean?) {

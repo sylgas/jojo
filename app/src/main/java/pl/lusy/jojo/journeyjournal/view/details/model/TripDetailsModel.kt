@@ -4,12 +4,12 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import pl.lusy.jojo.journeyjournal.data.model.DayDate
-import pl.lusy.jojo.journeyjournal.data.prefs.TripData
-import pl.lusy.jojo.journeyjournal.data.prefs.asSingle
+import pl.lusy.jojo.journeyjournal.data.model.Trip
 import pl.lusy.jojo.journeyjournal.data.repository.TripRepository
+import pl.lusy.jojo.journeyjournal.view.common.model.Result
+import pl.lusy.jojo.journeyjournal.view.common.model.toResult
 import javax.inject.Inject
 
 class TripDetailsModel @Inject constructor(
@@ -18,46 +18,57 @@ class TripDetailsModel @Inject constructor(
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    private val mutableTripName: MutableLiveData<String> = MutableLiveData()
-    val tripName: LiveData<String> = mutableTripName
+    private val mutableErrorMessage: MutableLiveData<String?> = MutableLiveData()
+    val errorMessage: LiveData<String?> = mutableErrorMessage
 
-    private val mutableTripStartDate: MutableLiveData<DayDate> = MutableLiveData()
-    val tripStartDate: LiveData<DayDate> = mutableTripStartDate
+    private val mutableIsLoading: MutableLiveData<Boolean> = MutableLiveData()
+    val isLoading: LiveData<Boolean> = mutableIsLoading
 
-    private val mutableTripEndDate: MutableLiveData<DayDate> = MutableLiveData()
-    val tripEndDate: LiveData<DayDate> = mutableTripEndDate
+    private val mutableTrip : MutableLiveData<Trip> = MutableLiveData()
+    val trip: LiveData<Trip> = mutableTrip
 
     init {
-        TripData.asSingle(TripData::name)
-            .subscribeBy(onSuccess = {
-                mutableTripName.value = it
-            })
-            .addTo(compositeDisposable)
-
-        TripData.asSingle(TripData::startDate)
-            .subscribeBy(onSuccess = {
-                mutableTripStartDate.value = getDateFromMillis(it)
-            })
-            .addTo(compositeDisposable)
-
-        TripData.asSingle(TripData::endDate)
-            .subscribeBy(onSuccess = {
-                mutableTripEndDate.value = getDateFromMillis(it)
-            })
-            .addTo(compositeDisposable)
+        mutableTrip.value = Trip()
     }
 
-    private fun getDateFromMillis(millis: Long) =
-        if (millis == 0L) DayDate.getCurrentDate() else DayDate.fromMillis(millis)
+    fun initTrip(tripId: Long?) {
+        tripId?.also { subscribeTrip(it) }
+    }
 
-    fun onTripNameChange(name: String) {
-        mutableTripName.value = name
+    private fun subscribeTrip(tripId: Long) {
+        repository.get(tripId).toResult().subscribeBy(onNext = { updateData(it) })
+    }
+
+    private fun updateData(result: Result<Trip>) {
+        mutableErrorMessage.value = result.errorMessage
+        mutableIsLoading.value = result.isLoading
+        result.data?.also { mutableTrip.value = it }
     }
 
     fun onSave() {
-        TripData.name = tripName.value ?: ""
-        TripData.startDate = tripStartDate.value?.millis ?: 0L
-        TripData.endDate = tripEndDate.value?.millis ?: 0L
+        trip.value?.let {
+            repository.save(it)
+        }
+    }
+
+    fun onTripNameChange(name: String) {
+        if (trip.value?.name != name) {
+            mutableTrip.value = trip.value?.update(name = name)
+        }
+    }
+
+    fun onTripStartDateChanged(year: Int, month: Int, dayOfMonth: Int) {
+        val startDate = DayDate(dayOfMonth, month, year)
+        if (trip.value?.startDate != startDate) {
+            mutableTrip.value = trip.value?.update(startDate = startDate)
+        }
+    }
+
+    fun onTripEndDateChanged(year: Int, month: Int, dayOfMonth: Int) {
+        val endDate = DayDate(dayOfMonth, month, year)
+        if (trip.value?.endDate != endDate) {
+            mutableTrip.value = trip.value?.update(endDate = endDate)
+        }
     }
 
     override fun onCleared() {
@@ -65,11 +76,4 @@ class TripDetailsModel @Inject constructor(
         compositeDisposable.clear()
     }
 
-    fun onTripStartDateSet(year: Int, month: Int, dayOfMonth: Int) {
-        mutableTripStartDate.value = DayDate(dayOfMonth, month, year)
-    }
-
-    fun onTripEndDateSet(year: Int, month: Int, dayOfMonth: Int) {
-        mutableTripEndDate.value = DayDate(dayOfMonth, month, year)
-    }
 }

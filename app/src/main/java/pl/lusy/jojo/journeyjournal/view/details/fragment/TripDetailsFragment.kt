@@ -11,6 +11,7 @@ import android.widget.TextView
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_trip_details.*
 import pl.lusy.jojo.journeyjournal.data.model.DayDate
+import pl.lusy.jojo.journeyjournal.data.model.Trip
 import pl.lusy.jojo.journeyjournal.databinding.FragmentTripDetailsBinding
 import pl.lusy.jojo.journeyjournal.view.details.model.TripDetailsModel
 
@@ -31,12 +32,12 @@ class TripDetailsFragment : DaggerFragment() {
 
     private val startDateChangeListener =
         DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-            tripModel.onTripStartDateSet(year, month, dayOfMonth)
+            tripModel.onTripStartDateChanged(year, month, dayOfMonth)
         }
 
     private val endDateChangeListener =
         DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-            tripModel.onTripEndDateSet(year, month, dayOfMonth)
+            tripModel.onTripEndDateChanged(year, month, dayOfMonth)
         }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -64,19 +65,14 @@ class TripDetailsFragment : DaggerFragment() {
     }
 
     private fun setupViewListeners() {
-        tripModel.tripStartDate.observe(this, Observer<DayDate?> {
-            updateTripStartDate(it!!)
-        })
-        tripModel.tripEndDate.observe(this, Observer<DayDate?> {
-            updateTripEndDate(it!!)
-        })
+        tripModel.trip.observe(this, Observer<Trip?> { updateTripDates(it) })
     }
 
-    private fun updateTripEndDate(date: DayDate) {
-        tripEndDate.dayDate = date
-    }
+    private fun updateTripDates(trip: Trip?) {
+        trip?.run {
+            tripEndDate.dayDate = trip.endDate
+            tripStartDate.dayDate = trip.startDate
+        }
 
-    private fun updateTripStartDate(date: DayDate) {
-        tripStartDate.dayDate = date
     }
 }

@@ -47,5 +47,13 @@ data class DayDate(val day: Int, val month: Int, val year: Int) {
         return DateFormat.getDateInstance().format(toDate())
     }
 
-    fun toDate(): Date = Calendar.getInstance().fromDayDate(this).time
+    private fun toDate(): Date = Calendar.getInstance().fromDayDate(this).time
+
+    override fun equals(other: Any?): Boolean {
+        return millis == (other as? DayDate?)?.millis
+    }
+
+    override fun hashCode(): Int {
+        return millis.hashCode()
+    }
 }

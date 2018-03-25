@@ -29,3 +29,6 @@ fun Context.drawable(@DrawableRes drawableRes: Int): Drawable =
 
 fun Context.toast(@StringRes textId: Int) =
     Toast.makeText(this, textId, Toast.LENGTH_LONG).show()
+
+fun Context.toast(text: String) =
+    Toast.makeText(this, text, Toast.LENGTH_LONG).show()

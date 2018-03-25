@@ -15,7 +15,7 @@ fun <T> KotprefModel.asFlowable(property: KProperty0<T>): Flowable<T> =
     Flowable.create<T>({ emitter ->
         val observedPropertyKey = property.name
         val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-            if (observedPropertyKey === key) {
+            if (observedPropertyKey == key) {
                 emitter.onNext(property.get())
             }
         }

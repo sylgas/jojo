@@ -1,6 +1,7 @@
 package pl.lusy.jojo.journeyjournal.view.details
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
@@ -10,28 +11,41 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.toolbar_bar_form.*
 import pl.lusy.jojo.journeyjournal.R
+import pl.lusy.jojo.journeyjournal.extension.toast
 import pl.lusy.jojo.journeyjournal.view.common.CoreActivity
 import pl.lusy.jojo.journeyjournal.view.common.replaceContentWithFragment
 import pl.lusy.jojo.journeyjournal.view.common.startCustomActivity
 import pl.lusy.jojo.journeyjournal.view.details.fragment.TripDetailsFragment
 import pl.lusy.jojo.journeyjournal.view.details.model.TripDetailsModel
+import javax.inject.Inject
 
 class TripDetailsActivity : CoreActivity() {
 
     companion object {
-        fun start(context: Context) = context.startCustomActivity<TripDetailsActivity>()
+        private const val EXTRA_TRIP_ID = "EXTRA_TRIP_ID"
+
+        fun start(context: Context, tripId: Long? = null) {
+            val bundle = tripId?.let {
+                Bundle().apply { putLong(EXTRA_TRIP_ID, tripId) }
+            }
+            context.startCustomActivity<TripDetailsActivity>(bundle)
+        }
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
     private val tripModel: TripDetailsModel by lazy {
-        ViewModelProviders.of(this).get(TripDetailsModel::class.java)
+        ViewModelProviders.of(this, viewModelFactory).get(TripDetailsModel::class.java)
     }
 
     private val tripNameWatcher = object : TextWatcher {
         override fun afterTextChanged(text: Editable?) {
-            tripModel.onTripNameChange(text.toString())
         }
 
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            tripModel.onTripNameChange(p0.toString())
+        }
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
     }
@@ -45,13 +59,17 @@ class TripDetailsActivity : CoreActivity() {
     }
 
     private fun setupViewListeners() {
-        tripModel.tripName.observe(this, Observer<String?> { updateTripNameView(it) })
+        tripModel.initTrip(intent?.extras?.getLong(EXTRA_TRIP_ID))
+        tripModel.trip.observe(this, Observer { updateTripNameView(it?.name) })
+        tripModel.errorMessage.observe(this, Observer { showError(it) })
+    }
+
+    private fun showError(errorMessage: String?) {
+        errorMessage?.let { toast(it) }
     }
 
     private fun updateTripNameView(name: String?) {
         tripName.setText(name)
-        tripName.requestFocus()
-        tripModel.tripName.removeObservers(this)
     }
 
     private fun setupActivityFrame() {

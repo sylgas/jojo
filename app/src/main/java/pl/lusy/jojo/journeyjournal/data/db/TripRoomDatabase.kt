@@ -8,6 +8,11 @@ import javax.inject.Inject
 class TripRoomDatabase @Inject constructor(
     private val tripDao: TripDao
 ) : TripDatabase {
+
+    override fun save(entity: TripEntity) {
+        tripDao.insertOrUpdate(entity)
+    }
+
     override fun getAll(): Flowable<List<TripEntity>> =
         tripDao.getAll()
 

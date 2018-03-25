@@ -23,8 +23,8 @@ data class TripEntity @Ignore constructor(
     var planId: Long?,
 
     var name: String = "",
-    var startDate: DayDate?,
-    var endDate: DayDate?
+    var startDate: DayDate,
+    var endDate: DayDate
 ) : DatabaseEntity {
-    constructor() : this(null, null, "", null, null)
+    constructor() : this(null, null, "", DayDate.fromMillis(0), DayDate.fromMillis(0))
 }
