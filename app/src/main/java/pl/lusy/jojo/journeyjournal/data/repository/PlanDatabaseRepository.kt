@@ -10,6 +10,7 @@ class PlanDatabaseRepository @Inject constructor(
     private val database: PlanDatabase
 ) : PlanRepository {
 
-    override fun get(id: Long): Flowable<Plan> = database.get(id).map { it.toPlan() }
+    override fun get(id: Long): Flowable<Plan> =
+        database.getWithRelation(id).map { it.toPlan() }
 
 }

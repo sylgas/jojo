@@ -1,5 +1,5 @@
 package pl.lusy.jojo.journeyjournal.data.db
 
-import pl.lusy.jojo.journeyjournal.data.entity.PlanEntity
+import pl.lusy.jojo.journeyjournal.data.db.entity.PlanSteps
 
-interface PlanDatabase : Database<PlanEntity>
+interface PlanDatabase : RelationDatabase<PlanSteps>
