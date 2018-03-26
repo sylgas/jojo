@@ -12,4 +12,7 @@
     <!--Trip Details-->
     <dimen name="trip_details_end_date_padding">72dp</dimen>
     <dimen name="trip_details_start_date_padding">56dp</dimen>
+
+    <!--History-->
+    <dimen name="trip_details_date_width">100dp</dimen>
 </resources>

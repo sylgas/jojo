@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:listDivider">@android:drawable/divider_horizontal_dim_dark</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -38,6 +39,10 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginTop">?attr/actionBarSize</item>
+    </style>
+
+    <style name="RecycleViewItem">
+        <item name="android:background">@color/white</item>
     </style>
 
 </resources>

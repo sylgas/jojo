@@ -22,4 +22,7 @@
     <!--Welcome-->
     <color name="progress_dots_selected">@color/white</color>
     <color name="progress_dots">@color/dimmed_black</color>
+
+    <!--History-->
+    <color name="dates_text_color">@color/white</color>
 </resources>

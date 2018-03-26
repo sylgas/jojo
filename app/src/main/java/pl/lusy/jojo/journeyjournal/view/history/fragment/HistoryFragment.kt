@@ -4,6 +4,8 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.RecyclerView.VERTICAL
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +41,8 @@ class HistoryFragment : DaggerFragment() {
     }
 
     private fun setupRecyclerView() {
+        val dividerItemDecoration = DividerItemDecoration(recyclerView.context, VERTICAL)
+        recyclerView.addItemDecoration(dividerItemDecoration)
         recyclerView.adapter = createRecyclerAdapter()
     }
 

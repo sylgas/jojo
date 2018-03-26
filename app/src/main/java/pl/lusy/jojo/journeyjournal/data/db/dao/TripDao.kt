@@ -7,7 +7,7 @@ import pl.lusy.jojo.journeyjournal.data.db.entity.TripEntity
 @Dao
 interface TripDao {
 
-    @Query("SELECT * FROM trip")
+    @Query("SELECT * FROM trip ORDER BY startDate")
     fun getAll(): Flowable<List<TripEntity>>
 
     @Query("SELECT * FROM trip WHERE id = :id")

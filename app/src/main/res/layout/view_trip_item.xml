@@ -10,25 +10,74 @@
             type="pl.lusy.jojo.journeyjournal.data.model.Trip" />
     </data>
 
-    <android.support.v7.widget.CardView
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/itemHolder"
+        style="@style/RecycleViewItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/date"
+            android:layout_width="@dimen/trip_details_date_width"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:orientation="vertical"
+            android:gravity="end"
+            android:padding="@dimen/activity_margin_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/title"
-                android:layout_width="0dp"
+                android:id="@+id/startDate"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{item.name}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Title" />
+                android:paddingBottom="@dimen/activity_margin_small"
+                android:text="@{item.startDate.toString()}"
+                android:textColor="@color/dates_text_color"
+                tools:text="Mar 1, 2018" />
 
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
+            <TextView
+                android:id="@+id/endDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.endDate.toString()}"
+                android:textColor="@color/dates_text_color"
+                tools:text="Feb 1, 2018" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:paddingEnd="@dimen/activity_margin"
+            android:paddingStart="@dimen/activity_margin"
+            android:paddingTop="@dimen/activity_margin_small"
+            android:text="@{item.name}"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/countDown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/date"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Test trip" />
+
+        <TextView
+            android:id="@+id/countDown"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:paddingEnd="@dimen/activity_margin"
+            android:paddingStart="@dimen/activity_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/date"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:text="2 days left" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
 </layout>

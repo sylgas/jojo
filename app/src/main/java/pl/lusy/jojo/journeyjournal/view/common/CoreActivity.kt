@@ -51,5 +51,8 @@ fun CoreActivity.replaceContentWithFragment(fragment: Fragment) {
         .commit()
 }
 
-inline fun <reified T : Activity> Context.startCustomActivity(bundle: Bundle? = null) =
-    startActivity(Intent(this, T::class.java), bundle)
+inline fun <reified T : Activity> Context.startCustomActivity(bundle: Bundle? = null) {
+    val intent = Intent(this, T::class.java)
+    bundle?.let { intent.putExtras(it) }
+    startActivity(intent)
+}
