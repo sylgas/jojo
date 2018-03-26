@@ -57,14 +57,14 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
-    compile "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
-    compile "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 
-    compile "com.chibatching.kotpref:kotpref:$kotpref_version"
-    compile "com.chibatching.kotpref:initializer:$kotpref_version"
+    implementation "com.chibatching.kotpref:kotpref:$kotpref_version"
+    implementation "com.chibatching.kotpref:initializer:$kotpref_version"
 
-    compile "android.arch.persistence.room:runtime:$room_version"
-    compile "android.arch.persistence.room:rxjava2:$room_version"
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    implementation "android.arch.persistence.room:rxjava2:$room_version"
     kapt "android.arch.persistence.room:compiler:$room_version"
 
     testImplementation "junit:junit:$junit_version"
