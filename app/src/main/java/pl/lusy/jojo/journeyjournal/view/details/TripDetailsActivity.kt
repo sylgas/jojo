@@ -11,10 +11,10 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.toolbar_bar_form.*
 import pl.lusy.jojo.journeyjournal.R
-import pl.lusy.jojo.journeyjournal.extension.toast
 import pl.lusy.jojo.journeyjournal.view.common.CoreActivity
 import pl.lusy.jojo.journeyjournal.view.common.replaceContentWithFragment
 import pl.lusy.jojo.journeyjournal.view.common.startCustomActivity
+import pl.lusy.jojo.journeyjournal.view.common.toast
 import pl.lusy.jojo.journeyjournal.view.details.fragment.TripDetailsFragment
 import pl.lusy.jojo.journeyjournal.view.details.model.TripDetailsModel
 import javax.inject.Inject
@@ -40,14 +40,13 @@ class TripDetailsActivity : CoreActivity() {
     }
 
     private val tripNameWatcher = object : TextWatcher {
-        override fun afterTextChanged(text: Editable?) {
+        override fun afterTextChanged(text: Editable?) {}
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+        override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
             tripModel.onTripNameChange(text.toString())
         }
-
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        }
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,8 +68,7 @@ class TripDetailsActivity : CoreActivity() {
     }
 
     private fun updateTripNameView(name: String?) {
-        tripName.setText(name)
-        tripName.requestFocus()
+        editableTitle.setText(name)
     }
 
     private fun setupActivityFrame() {
@@ -78,9 +76,9 @@ class TripDetailsActivity : CoreActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_action_close)
         supportActionBar?.title = ""
-        tripName.setTextLimit(R.integer.trip_details_name_limit)
-        tripName.addTextChangedListener(tripNameWatcher)
-        tripName.setTextLimitDetailsVisible(false)
+        editableTitle.setTextLimit(R.integer.trip_details_name_limit)
+        editableTitle.addTextChangedListener(tripNameWatcher)
+        editableTitle.setTextLimitDetailsVisible(false)
     }
 
     private fun setupFragment() {

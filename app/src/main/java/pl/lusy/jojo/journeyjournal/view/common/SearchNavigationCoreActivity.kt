@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.Menu
 import android.view.MenuItem
 import pl.lusy.jojo.journeyjournal.R
-import pl.lusy.jojo.journeyjournal.extension.toast
 
 @SuppressLint("Registered")
 abstract class SearchNavigationCoreActivity : NavigationCoreActivity() {

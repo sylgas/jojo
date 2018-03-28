@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_history.*
 import pl.lusy.jojo.journeyjournal.databinding.FragmentHistoryBinding
-import pl.lusy.jojo.journeyjournal.extension.toast
+import pl.lusy.jojo.journeyjournal.view.common.toast
 import pl.lusy.jojo.journeyjournal.view.history.adapter.TripAdapter
 import pl.lusy.jojo.journeyjournal.view.history.model.HistoryModel
 import javax.inject.Inject

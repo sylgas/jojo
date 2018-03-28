@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 import kotlinx.android.synthetic.main.view_pagination.view.*
 import pl.lusy.jojo.journeyjournal.R
-import pl.lusy.jojo.journeyjournal.extension.shown
+import pl.lusy.jojo.journeyjournal.view.common.view.shown
 
 class PaginationView @JvmOverloads constructor(
     context: Context,

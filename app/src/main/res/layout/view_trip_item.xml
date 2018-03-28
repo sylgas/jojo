@@ -4,10 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-        <variable
-            name="item"
-            type="pl.lusy.jojo.journeyjournal.data.model.Trip" />
+        <variable name="item" type="pl.lusy.jojo.journeyjournal.data.model.Trip" />
     </data>
 
     <android.support.constraint.ConstraintLayout

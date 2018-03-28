@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.support.design.widget.NavigationView
 import android.view.MenuItem
 import pl.lusy.jojo.journeyjournal.R
-import pl.lusy.jojo.journeyjournal.extension.toast
 import pl.lusy.jojo.journeyjournal.view.history.HistoryActivity
 import pl.lusy.jojo.journeyjournal.view.main.MainActivity
 

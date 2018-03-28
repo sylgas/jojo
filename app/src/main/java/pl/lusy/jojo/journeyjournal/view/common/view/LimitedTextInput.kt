@@ -1,15 +1,14 @@
 package pl.lusy.jojo.journeyjournal.view.common.view
 
 import android.content.Context
+import android.databinding.DataBindingUtil
 import android.support.annotation.IntegerRes
 import android.support.design.widget.CoordinatorLayout
-import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
-import kotlinx.android.synthetic.main.view_limited_text_input.view.*
+import pl.lusy.jojo.journeyjournal.BR
 import pl.lusy.jojo.journeyjournal.R
-import pl.lusy.jojo.journeyjournal.extension.setMaxLength
-import pl.lusy.jojo.journeyjournal.extension.shown
+import pl.lusy.jojo.journeyjournal.databinding.ViewLimitedTextInputBinding
 
 class LimitedTextInput @JvmOverloads constructor(
     context: Context,
@@ -17,38 +16,33 @@ class LimitedTextInput @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : CoordinatorLayout(context, attrs, defStyleAttr) {
 
-    private val inputTextWatcher = object : TextWatcher {
-        override fun afterTextChanged(text: Editable?) {
-            textProgress.text = text?.length.toString()
-        }
-
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-    }
-
-    init {
-        inflate(getContext(), R.layout.view_limited_text_input, this)
+    private val binding by lazy {
+        DataBindingUtil.inflate<ViewLimitedTextInputBinding>(
+            inflater,
+            R.layout.view_limited_text_input,
+            this,
+            true
+        )
     }
 
     fun setTextLimit(@IntegerRes limitRes: Int) {
         val limitValue = context.resources.getInteger(limitRes)
-        limit.text = limitValue.toString()
-        limitDescription.text = context.getString(R.string.trip_details_limit_desc, limitValue)
-        inputText.setMaxLength(limitValue)
-        inputText.addTextChangedListener(inputTextWatcher)
+        binding.setVariable(BR.limit, limitValue.toString())
+        val limitDescription = context.getString(R.string.trip_details_limit_desc, limitValue)
+        binding.setVariable(BR.description, limitDescription)
+        binding.inputText.setMaxLength(limitValue)
     }
 
     fun addTextChangedListener(textWatcher: TextWatcher) {
-        inputText.addTextChangedListener(textWatcher)
+        binding.inputText.addTextChangedListener(textWatcher)
     }
 
     fun setTextLimitDetailsVisible(isVisible: Boolean) {
-        limitDetails.shown = isVisible
+        binding.limitDetails.shown = isVisible
     }
 
     fun setText(textString: String?) {
-        inputText.setText(textString)
+        binding.setVariable(BR.text, textString ?: "")
     }
 
 }
