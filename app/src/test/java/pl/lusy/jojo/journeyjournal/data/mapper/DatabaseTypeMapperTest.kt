@@ -52,7 +52,7 @@ class DatabaseTypeMapperTest {
         assertEquals(946684800000L, millis)
     }
 
-    fun assertDayDate(date: DayDate?, millis: Long, day: Int, month: Int, year: Int) {
+    private fun assertDayDate(date: DayDate?, millis: Long, day: Int, month: Int, year: Int) {
         assertNotNull(date)
         assertEquals(millis, date?.millis)
         assertEquals(day, date?.day)

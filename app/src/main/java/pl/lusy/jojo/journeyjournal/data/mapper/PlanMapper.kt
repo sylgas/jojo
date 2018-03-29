@@ -7,6 +7,6 @@ import pl.lusy.jojo.journeyjournal.data.model.PlanStep
 
 fun PlanSteps.toPlan() = Plan(planSteps.toPlanSteps())
 
-fun List<PlanStepEntity>.toPlanSteps() = this.map { it.toPlanStep() }
+private fun List<PlanStepEntity>.toPlanSteps() = this.map { it.toPlanStep() }
 
-fun PlanStepEntity.toPlanStep() = PlanStep(title, description)
+private fun PlanStepEntity.toPlanStep() = PlanStep(title, description)
