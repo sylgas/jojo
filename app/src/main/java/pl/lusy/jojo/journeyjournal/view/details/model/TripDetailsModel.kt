@@ -57,21 +57,21 @@ class TripDetailsModel @Inject constructor(
 
     fun onTripNameChange(name: String) {
         if (trip.value?.name != name) {
-            mutableTrip.value = trip.value?.update(name = name)
+            mutableTrip.value = trip.value?.copy(name = name)
         }
     }
 
     fun onTripStartDateChanged(year: Int, month: Int, dayOfMonth: Int) {
         val startDate = DayDate(dayOfMonth, month, year)
         if (trip.value?.startDate != startDate) {
-            mutableTrip.value = trip.value?.update(startDate = startDate)
+            mutableTrip.value = trip.value?.copy(startDate = startDate)
         }
     }
 
     fun onTripEndDateChanged(year: Int, month: Int, dayOfMonth: Int) {
         val endDate = DayDate(dayOfMonth, month, year)
         if (trip.value?.endDate != endDate) {
-            mutableTrip.value = trip.value?.update(endDate = endDate)
+            mutableTrip.value = trip.value?.copy(endDate = endDate)
         }
     }
 
